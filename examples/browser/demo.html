@@ -216,11 +216,12 @@ var video = document.getElementById('video');
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
    context.drawImage(video, 0, 0, 640, 480)
-   var image = new Image()
-   image.src = context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png")
-   console.log(image )
-   document.getElementById("downloader").href = document.getElementById("canvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream')
+   //var image = new Image()
+   //image.src = context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png")
+   //console.log(image )
+   //document.getElementById("downloader").href = document.getElementById("canvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream')
    //recognizeFile(context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png"))
+   recognizeFile(document.getElementById('canvas').toDataURL('image/png'))
 });
 
 </script>
