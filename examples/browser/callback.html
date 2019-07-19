@@ -1,0 +1,92 @@
+<html>   
+   <div>
+         <p id="display_name"></p>
+         <p id="country"></p>
+
+   </div>
+   <form>  
+      <input type="text" id="number" name="number"/><br/>  
+      <input type="button" value="cube" onclick="searchTrack()"/>  
+   </form>  
+</html>
+
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>  
+   let params = new URLSearchParams(window.location.hash.substring(1));
+   let access_token = params.get("access_token")
+   access_token = access_token
+   search_text= ''
+   //access_token= ''
+   device= ''
+
+   window.onSpotifyWebPlaybackSDKReady = () => {
+      console.log('in')
+
+      let player = new Spotify.Player({
+         name: 'Kris from web',
+         getOAuthToken: getAuth => {
+            getAuth(access_token);
+         },
+         volume: 0.4
+      })
+
+      player.connect().then(success => {
+         if (success) {
+            console.log('The Web Playback SDK successfully connected to Spotify!');
+         }
+      })
+
+      player.addListener('ready', ({ device_id }) => {
+         console.log('Web Playback is ready to be played!');
+         console.log('Connected with Device ID', device_id);
+
+         device = device_id
+      })
+      let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
+      headers: {
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${access_token}`
+            }
+      }).then(data5 => data5.json())
+
+      getuserdata.then(function(result){
+         //printing into console log the whole result of getting user data
+         document.getElementById("display_name").innerHTML = result.display_name
+         document.getElementById('country').innerHTML = result.country
+
+
+         console.log(result.display_name);
+         player.setName(result.display_name).then(() =>{
+            console.log('Player name updated!');
+         })
+      })
+   }
+   function searchTrack(){  
+   var search_text = document.getElementById("number").value;  
+   console.log(search_text)
+   console.log(device)
+   fetch(
+                `https://api.spotify.com/v1/search?q=${search_text}&type=track`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`
+                    }
+                } 
+            ).then(data => {
+                data.json().then(({tracks: { items }}) => {
+                    console.log(items)
+                    let uris = items.map(x=>x.uri)
+                    console.log(uris)
+                    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ uris }),
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                        },
+                    })
+                })
+            })
+   }  
+</script> 
+   
