@@ -1,15 +1,28 @@
-<script src="/dist/tesseract.dev.js"></script>
-<input type="file" onchange="const worker = new Tesseract.TesseractWorker({ corePath: '../../node_modules/tesseract.js-core/tesseract-core.wasm.js' });worker.recognize(this.files[0]).progress(function(data){console.log(data)}).then(function(data){console.log(data)})">
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="/dist/tesseract.dev.js"></script>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+            <input type="file" onchange="const worker = new Tesseract.TesseractWorker({ corePath: '../../node_modules/tesseract.js-core/tesseract-core.wasm.js' });worker.recognize(this.files[0]).progress(function(data){console.log(data)}).then(function(data){console.log(data)})">
 
 
-<a href="https://accounts.spotify.com/authorize?client_id=ef8c1d51636b4c3194b0d1d0dbedc538&redirect_uri=http://localhost:3000/examples/browser/callback.html&scope=streaming,app-remote-control,user-read-email,user-read-currently-playing&response_type=token&state=123">
-   <h1>
-       Kris App - Spotify
-   </h1>
-</a>
-
-<a href="https://accounts.spotify.com/authorize?client_id=ef8c1d51636b4c3194b0d1d0dbedc538&redirect_uri=http://localhost:3000/examples/browser/demo.html&scope=streaming,app-remote-control,user-read-email,user-read-currently-playing&response_type=token&state=123">
-   <h1>
-       Kris App - Spotify with image process
-   </h1>
-</a>
+            <a href="https://accounts.spotify.com/authorize?client_id=ef8c1d51636b4c3194b0d1d0dbedc538&redirect_uri=http://localhost:3000/examples/browser/callback.html&scope=streaming,app-remote-control,user-read-email,user-read-currently-playing&response_type=token&state=123">
+               <h1>
+                   Kris App - Spotify
+               </h1>
+            </a>
+            
+            <a href="https://accounts.spotify.com/authorize?client_id=ef8c1d51636b4c3194b0d1d0dbedc538&redirect_uri=http://localhost:3000/examples/browser/demo.html&scope=streaming,app-remote-control,user-read-email,user-read-currently-playing&response_type=token&state=123">
+               <h1>
+                   Kris App - Spotify with image process
+               </h1>
+            </a>
+    </body>
+</html>
