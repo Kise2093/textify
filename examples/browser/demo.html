@@ -150,9 +150,8 @@ function progressUpdate(packet){
 			progress.value = packet.progress
 			progress.max = 1
 			line.appendChild(progress)
-		}
-
-
+      }
+      
 		if(packet.status == 'done'){
 			var pre = document.createElement('pre')
 			pre.appendChild(document.createTextNode(packet.data.text))
@@ -166,7 +165,7 @@ function progressUpdate(packet){
 }
 
 function recognizeFile(file){
-   console.log(file)
+   //console.log(file)
 	document.querySelector("#log").innerHTML = ''
   const corePath = window.navigator.userAgent.indexOf("Edge") > -1
     ? '../../node_modules/tesseract.js-core/tesseract-core.asm.js'
@@ -216,11 +215,6 @@ var video = document.getElementById('video');
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
    context.drawImage(video, 0, 0, 640, 480)
-   //var image = new Image()
-   //image.src = context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png")
-   //console.log(image )
-   //document.getElementById("downloader").href = document.getElementById("canvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream')
-   //recognizeFile(context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png"))
    recognizeFile(document.getElementById('canvas').toDataURL('image/png'))
 });
 
