@@ -9,7 +9,7 @@
    </div>
    <form>  
       <input type="text" id="number" name="number"/><br/>  
-      <input type="button" value="cube" onclick="searchTrack()"/>  
+      <input type="button" value="Enter" onclick="searchTrack()"/>  
    </form>
    
    <video id="video" width="640" height="480" autoplay></video>
@@ -68,33 +68,59 @@
       })
    }
    function searchTrack(x){  
-	//var search_text = document.getElementById("number").value;  
-	var search_text = x
-   console.log(search_text)
-   console.log(x)
-   fetch(
-                `https://api.spotify.com/v1/search?q=${search_text}&type=track`,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${access_token}`
-                    }
-                } 
-            ).then(data => {
-                data.json().then(({tracks: { items }}) => {
-                    console.log(items)
-                    let uris = items.map(x=>x.uri)
-                    console.log(uris)
-                    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ uris }),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                        },
-                    })
-                })
-            })
+      var dataFromText = document.getElementById("number").value;  
+      var imageData = x
+      console.log(search_text)
+      console.log(x)
+      if(imageData!=null){
+         playMusic(imageData)
+      }else if(imageData == null) {
+         playMusic(dataFromText)
+      }
+      // fetch(`https://api.spotify.com/v1/search?q=${search_text}&type=track`,{
+      //                headers: {
+      //                      'Authorization': `Bearer ${access_token}`
+      //                }
+      //             } 
+      //          ).then(data => {
+      //             data.json().then(({tracks: { items }}) => {
+      //                console.log(items)
+      //                let uris = items.map(x=>x.uri)
+      //                console.log(uris)
+      //                fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
+      //                      method: 'PUT',
+      //                      body: JSON.stringify({ uris }),
+      //                      headers: {
+      //                      'Content-Type': 'application/json',
+      //                      'Authorization': `Bearer ${access_token}`
+      //                      },
+      //                })
+      //             })
+      //          })
    }  
+
+   function playMusic(song) {
+      fetch(`https://api.spotify.com/v1/search?q=${song}&type=track`,{
+                     headers: {
+                           'Authorization': `Bearer ${access_token}`
+                     }
+                  } 
+               ).then(data => {
+                  data.json().then(({tracks: { items }}) => {
+                     console.log(items)
+                     let uris = items.map(x=>x.uri)
+                     console.log(uris)
+                     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
+                           method: 'PUT',
+                           body: JSON.stringify({ uris }),
+                           headers: {
+                           'Content-Type': 'application/json',
+                           'Authorization': `Bearer ${access_token}`
+                           },
+                     })
+                  })
+               })
+   }
 /////////////////////////////////////////////////////////////////////
 //text recogniztion part
 function progressUpdate(packet){
