@@ -1,26 +1,55 @@
-<html>   
-   <div>
-         <p id="display_name"></p>
-         <p id="country"></p>
+<!DOCTYPE html>
+<html>
 
+<head>
+   <script src="/dist/tesseract.dev.js"></script>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+   <div class="cover">
+      <div class="cover-text">
+         <div>
+            <h3 id="display_name"></h3>
+            <h4 id="country"></h4>
+
+         </div>
+         <div>
+            <a role="button" class="btn btn-danger btn-md" onclick="current()">Current Track</a>
+         </div>
+         <form>
+            <input type="text" id="number" name="number" /><br />
+            <a role="button" class="btn btn-danger btn-md" onclick="searchTrack()">cube</a>
+         </form>
+      </div>
    </div>
-   <div>
-      <button onclick ="current()">Current Track</button>
-   </div>
-   <form>  
-      <input type="text" id="number" name="number"/><br/>  
-      <input type="button" value="cube" onclick="searchTrack()"/>  
-   </form>  
+</body>
+
 </html>
 
+
+
 <script src="https://sdk.scdn.co/spotify-player.js"></script>
-<script>  
+<script>
    let params = new URLSearchParams(window.location.hash.substring(1));
    let access_token = params.get("access_token")
    access_token = access_token
-   search_text= ''
+   search_text = ''
    //access_token= ''
-   device= ''
+   device = ''
 
    window.onSpotifyWebPlaybackSDKReady = () => {
       console.log('in')
@@ -45,51 +74,50 @@
 
          device = device_id
       })
-      let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
-      headers: {
-               'Content-Type': 'application/json',
-               'Authorization': `Bearer ${access_token}`
-            }
+      let getuserdata = fetch(`https://api.spotify.com/v1/me`, {
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+         }
       }).then(data5 => data5.json())
 
-      getuserdata.then(function(result){
+      getuserdata.then(function (result) {
          //printing into console log the whole result of getting user data
          document.getElementById("display_name").innerHTML = result.display_name
          document.getElementById('country').innerHTML = result.country
 
 
          console.log(result.display_name);
-         player.setName(result.display_name).then(() =>{
+         player.setName(result.display_name).then(() => {
             console.log('Player name updated!');
          })
       })
    }
-   function searchTrack(){  
-   var search_text = document.getElementById("number").value;  
-   console.log(search_text)
-   console.log(device)
-   fetch(
-                `https://api.spotify.com/v1/search?q=${search_text}&type=track`,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${access_token}`
-                    }
-                } 
-            ).then(data => {
-                data.json().then(({tracks: { items }}) => {
-                    console.log(items)
-                    let uris = items.map(x=>x.uri)
-                    console.log(uris)
-                    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ uris }),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                        },
-                    })
-                })
+   function searchTrack() {
+      var search_text = document.getElementById("number").value;
+      console.log(search_text)
+      console.log(device)
+      fetch(
+         `https://api.spotify.com/v1/search?q=${search_text}&type=track`,
+         {
+            headers: {
+               'Authorization': `Bearer ${access_token}`
+            }
+         }
+      ).then(data => {
+         data.json().then(({ tracks: { items } }) => {
+            console.log(items)
+            let uris = items.map(x => x.uri)
+            console.log(uris)
+            fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
+               method: 'PUT',
+               body: JSON.stringify({ uris }),
+               headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${access_token}`
+               },
             })
+         })
+      })
    }  
-</script> 
-   
+</script>
