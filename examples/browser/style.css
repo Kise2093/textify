@@ -5,7 +5,7 @@ html,
     height: 100%;
 }
 .cover{
-    background: url(images//1_-nCsLWHAHmwJebVp8hKS0Q.jpeg)top left no-repeat;
+    /* background: url(images//1_-nCsLWHAHmwJebVp8hKS0Q.jpeg)top left no-repeat; */
     background-size: cover;
     display: table;
     width: 100%;
