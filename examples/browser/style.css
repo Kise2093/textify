@@ -37,6 +37,9 @@ blockquote{
     font-size: 32px;
     color: white;
 }
+.section{
+    padding-top: 14px;
+}
 blockquote cite{
     display: block;
     text-align: right;
@@ -55,15 +58,18 @@ h5{
     font-size: 2.25rem;
 }
 h2{
+    padding-bottom: 3%;
     text-align: center;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
     text-transform: uppercase;
     margin: 0 0 60px;
 }
-h2 + p{
+h2,
+p{
     text-align: center;
-    margin-top: -50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 #team{
     background: url(images/website-design-background-1.jpg);;
