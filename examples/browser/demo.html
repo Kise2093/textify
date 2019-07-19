@@ -32,8 +32,6 @@
                   <p class="card-title">DETAILS</p>
                   <p id="display_name"></p>
                   <p id="country"></p>
-                  <p id="song_name"></p>
-                  <p id="artist"></p>
                </div>
             </div>
          </div>
@@ -47,6 +45,8 @@
                   <form>
                      <a class="btn btn-primary btn-sm" style="color: aliceblue;" onclick="current()">Current
                         Track</a>
+                     <p id="song_name"></p><br/>
+                     <p id="artist"></p>
                      <input type="text" id="number" name="number" />
                      <a style="color: aliceblue; margin-top: 1%;" class="btn btn-primary btn-sm" value="Enter"
                         onclick="searchTrack()">search</a>
@@ -62,7 +62,6 @@
                      <option value='chi_sim'> Chinese </option>
                      <option value='chi_tra'> Traditional Chinese </option>
                      <option value='eng' selected> English </option>
-                     <option value='enm'> English (Old) </option>
                      <option value='jpn'> Japanese </option>
                      <option value='tha'> Thai </option>
                   </select>
