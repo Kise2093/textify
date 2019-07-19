@@ -7,6 +7,15 @@
          <p id="country"></p>
 
    </div>
+   <div>
+      <p id="song_name"></p>
+      <p id="artist"></p>
+
+  </div>
+
+   <div>
+      <button onclick ="current()">Current Track</button>
+   </div>
    <form>  
       <input type="text" id="number" name="number"/><br/>  
       <input type="button" value="Enter" onclick="searchTrack()"/>  
@@ -77,27 +86,24 @@
       }else if(imageData == null) {
          playMusic(dataFromText)
       }
-      // fetch(`https://api.spotify.com/v1/search?q=${search_text}&type=track`,{
-      //                headers: {
-      //                      'Authorization': `Bearer ${access_token}`
-      //                }
-      //             } 
-      //          ).then(data => {
-      //             data.json().then(({tracks: { items }}) => {
-      //                console.log(items)
-      //                let uris = items.map(x=>x.uri)
-      //                console.log(uris)
-      //                fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
-      //                      method: 'PUT',
-      //                      body: JSON.stringify({ uris }),
-      //                      headers: {
-      //                      'Content-Type': 'application/json',
-      //                      'Authorization': `Bearer ${access_token}`
-      //                      },
-      //                })
-      //             })
-      //          })
    }  
+
+   function current() {
+      let getCurrentsong = fetch(
+         `https://api.spotify.com/v1/me/player/currently-playing`,{
+            headers:{
+                  'Authorization': `Bearer ${access_token}`
+            }
+         }
+      ).then(currentData => {
+         currentData.json().then(function(result) {
+            console.log(result)
+            document.getElementById('song_name').innerHTML = result.item.name
+            document.getElementById('artist').innerHTML = result.item.artists[0].name
+         })
+      })
+      
+   }
 
    function playMusic(song) {
       fetch(`https://api.spotify.com/v1/search?q=${song}&type=track`,{
@@ -160,6 +166,7 @@ function progressUpdate(packet){
 }
 
 function recognizeFile(file){
+   console.log(file)
 	document.querySelector("#log").innerHTML = ''
   const corePath = window.navigator.userAgent.indexOf("Edge") > -1
     ? '../../node_modules/tesseract.js-core/tesseract-core.asm.js'
@@ -208,7 +215,12 @@ var video = document.getElementById('video');
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 640, 480);
+   context.drawImage(video, 0, 0, 640, 480)
+   var image = new Image()
+   image.src = context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png")
+   console.log(image )
+   document.getElementById("downloader").href = document.getElementById("canvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream')
+   //recognizeFile(context.drawImage(video, 0, 0, 640, 480).toDataURL("image/png"))
 });
 
 </script>
