@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html>
 
-   <head>
-      <script src="/dist/tesseract.dev.js"></script>
-      <script src="/dist/tesseract.dev.js"></script>
-      <script src="https://sdk.scdn.co/spotify-player.js"></script>
+<head>
+   <script src="/dist/tesseract.dev.js"></script>
+   <script src="/dist/tesseract.dev.js"></script>
+   <script src="https://sdk.scdn.co/spotify-player.js"></script>
 
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-         crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-         crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-         crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="stylesheet" href="style.css">
-   </head>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="style.css">
+</head>
 
-   <body>
+<body>
 
+   <!-- <div class="cover2"> -->
+   <div class="container-fluid">
       <!-- <div class="cover2"> -->
-      <div class="container-fluid">
-         <!-- <div class="cover2"> -->
-         <div class="row">
-            <div class="col-md-5 col-sm-12">
-               <div class="card">
-                  <div class="card-body">
-                     <p class="card-title">DETAILS</p>
-                     <img id='userID' >
-                     <p id="display_name"></p>
-                     <p id="country"></p>
-                  </div>
+      <div class="row">
+         <div class="col-md-5 col-sm-12">
+            <div class="card">
+               <div class="card-body" style="text-align: center;">
+                  <p class="card-title">DETAILS</p>
+                  <img class="profile_image" id='userID'>
+                  <p id="display_name"></p>
+                  <p id="country"></p>
                </div>
             </div>
-            <div class="col-md-4 col-sm-12">
-               <div class="card">
-                  <div class="card-body">
-                     <p class="card-title">Play a song here</p>
-                     <div>
+         </div>
+         <div class="col-md-4 col-sm-12">
+            <div class="card">
+               <div class="card-body" style="text-align: center;">
+                  <p class="card-title">Play a song here</p>
+                  <div>
 
-                     </div>
-                     <form>
-                        <a class="btn btn-primary btn-sm" style="color: aliceblue;" onclick="current()">Current
-                           Track</a>
-                        <p id="song_name"></p><br/>
-                        <p id="artist"></p>
-                        <img id="albumImage" width="300" height="300"><br/>
-                        <input type="text" id="number" name="number" />
-                        <a style="color: aliceblue; margin-top: 1%;" class="btn btn-primary btn-sm" value="Enter"
-                           onclick="searchTrack()">search</a>
-                     </form>
                   </div>
+                  <form >
+                     <a class="btn btn-primary btn-sm" style="color: aliceblue; margin-bottom: 2%;padding-bottom: 2%;border-bottom: 1px solid #ddd;" onclick="current()">Current
+                        Track</a>
+                     <p id="song_name"></p>
+                     <p id="artist" style="margin-bottom: 2%;padding-bottom: 2%;border-bottom: 1px solid #ddd;"></p>
+                     <img id="albumImage" width="300" height="300" style="text-align: center; margin-bottom: 2%;padding-bottom: 2%;border-bottom: 1px solid #ddd;"><br />
+                     <input type="text" id="number" name="number" />
+                     <a style="color: aliceblue; margin-top: 1%;" class="btn btn-primary btn-sm" value="Enter"
+                        onclick="searchTrack()">search</a>
+                  </form>
                </div>
             </div>
-            <div class="col-md-3 col-sm-12">
-               <div class="card">
-                  <div class="card-body">
-                     <p class="card-title">Search image here</p>
-                     <select id="langsel" onchange="window.lastFile && recognizeFile(window.lastFile)">
-                        <option value='chi_sim'> Chinese </option>
-                        <option value='chi_tra'> Traditional Chinese </option>
-                        <option value='eng' selected> English </option>
-                        <option value='jpn'> Japanese </option>
-                        <option value='tha'> Thai </option>
-                     </select>
+         </div>
+         <div class="col-md-3 col-sm-12">
+            <div class="card">
+               <div class="card-body">
+                  <p class="card-title">Search image here</p>
+                  <select id="langsel" onchange="window.lastFile && recognizeFile(window.lastFile)">
+                     <option value='chi_sim'> Chinese </option>
+                     <option value='chi_tra'> Traditional Chinese </option>
+                     <option value='eng' selected> English </option>
+                     <option value='jpn'> Japanese </option>
+                     <option value='tha'> Thai </option>
+                  </select>
 
-                     <a class="btn btn-warning btn-sm" style="color: aliceblue;"
-                        onclick="recognizeFile('../../tests/assets/images/simple.png')">Sample Image</a>
-                     <input type="file" onchange="recognizeFile(window.lastFile=this.files[0])">
-                  </div>
+                  <a class="btn btn-warning btn-sm" style="color: aliceblue;"
+                     onclick="recognizeFile('../../tests/assets/images/simple.png')">Sample Image</a>
+                  <input type="file" onchange="recognizeFile(window.lastFile=this.files[0])">
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-md-6 col-sm-12">
-               <a class="btn btn-warning btn-sm" style="color: aliceblue;" id="snap">Snap Photo</a>
-               <video id="video" width="100%" height="100%" autoplay></video>
-            </div>
-            <div class="col-md-6 col-sm-12">
-               <canvas style="margin-top:4%;" id="canvas" width="640" height="480"></canvas>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-12">
-               <div id="log"></div>
-            </div>
-         </div>
-         <!-- </div> -->
       </div>
-      <!-- <div class="cover-text">
+      <div class="row">
+         <div class="col-md-6 col-sm-12">
+            <a class="btn btn-warning btn-sm" style="color: aliceblue;" id="snap">Snap Photo</a>
+            <video id="video" width="100%" height="100%" autoplay></video>
+         </div>
+         <div class="col-md-6 col-sm-12">
+            <canvas style="margin-top:4%;" id="canvas" width="640" height="480"></canvas>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-12">
+            <div id="log"></div>
+         </div>
+      </div>
+      <!-- </div> -->
+   </div>
+   <!-- <div class="cover-text">
          <div>
             <p id="display_name"></p>
             <p id="country"></p>
@@ -127,12 +127,13 @@
          <button onclick="recognizeFile('../../tests/assets/images/simple.png')">Sample Image</button>
          <input type="file" onchange="recognizeFile(window.lastFile=this.files[0])"> -->
 
-   </body>
+</body>
+
 </html>
 
 <script>
-////////////////////////////////////////////////////////////////////////////
-//Spotify   
+   ////////////////////////////////////////////////////////////////////////////
+   //Spotify   
    let params = new URLSearchParams(window.location.hash.substring(1));
    let access_token = params.get("access_token")
    access_token = access_token
@@ -162,7 +163,7 @@
 
          device = device_id
       })
-      
+
       let getuserdata = fetch(`https://api.spotify.com/v1/me`, {
          headers: {
             'Content-Type': 'application/json',
@@ -172,6 +173,7 @@
 
       getuserdata.then(function (result) {
          //printing into console log the whole result of getting user data
+         document.getElementById("albumImage").style.display = "none"; 
          console.log(result.images[0].url)
          document.getElementById('userID').src = result.images[0].url
          document.getElementById("display_name").innerHTML = result.display_name
@@ -189,11 +191,11 @@
    function getPlaylistPicture(playlist_id) {
       fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/images`, {
          headers: {
-               'Accept': 'application/json',
-               'Content-Type': 'application/json',
-               'Authorization': `Bearer ${access_token}`
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
          }
-      }).then(result =>{
+      }).then(result => {
          console.log(result)
 
       })
@@ -224,9 +226,13 @@
             console.log(result.item.album.images[1].url)
             document.getElementById('song_name').innerHTML = result.item.name
             document.getElementById('artist').innerHTML = result.item.artists[0].name
-            document.getElementById('albumImage').src = result.item.album.images[1].url
+
             // var albumID =  result.item.album.uri
             // getPlaylistPicture(albumID)
+            if (result.item.album.images[1].url) {
+               document.getElementById("albumImage").style.display = "-webkit-inline-box";
+               document.getElementById('albumImage').src = result.item.album.images[1].url
+            }
          })
       })
 
@@ -242,7 +248,7 @@
          data.json().then(({ tracks: { items } }) => {
             //console.log(items)
             console.log(items[0].album.uri)
-            
+
             let uris = items.map(x => x.uri)
             //console.log(uris)
             fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
@@ -346,6 +352,7 @@
       context.drawImage(video, 0, 0, 640, 480)
       recognizeFile(document.getElementById('canvas').toDataURL('image/png'))
    });
+
 
 </script>
 

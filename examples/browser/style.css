@@ -38,6 +38,12 @@ html,
 .testimonial{
     background-color: #000;
 }
+.profile_image{
+    text-align: center;
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #ddd;
+}
 blockquote{
     border: none;
     margin: 0;
