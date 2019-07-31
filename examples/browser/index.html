@@ -33,6 +33,9 @@
                   <img class="profile_image" id='userID'>
                   <p id="display_name"></p>
                   <p id="country"></p>
+                  <button onclick="player.togglePlay().then(() => {
+                     console.log('Toggled playback!');
+                   })">Toggle</button>
                </div>
             </div>
          </div>
@@ -143,7 +146,7 @@
 
    window.onSpotifyWebPlaybackSDKReady = () => {
       console.log('in')
-      let player = new Spotify.Player({
+      player = new Spotify.Player({
          name: 'Kris from web',
          getOAuthToken: getAuth => {
             getAuth(access_token);
@@ -157,12 +160,20 @@
          }
       })
 
+
+
       player.addListener('ready', ({ device_id }) => {
          console.log('Web Playback is ready to be played!');
          console.log('Connected with Device ID', device_id);
 
          device = device_id
       })
+
+      // function toggle() {
+      //    player.togglePlay().then(() => {
+      //       console.log('Toggled playback!');
+      //    })
+      // }
 
       let getuserdata = fetch(`https://api.spotify.com/v1/me`, {
          headers: {
@@ -188,6 +199,7 @@
       })
    }
 
+   
    function getPlaylistPicture(playlist_id) {
       fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/images`, {
          headers: {
@@ -260,6 +272,24 @@
                },
             })
          })
+      })
+   }
+   function toggle() {
+      console.log(device)
+      fetch(`https://api.spotify.com/v1/me/player/play?device_id${device}`, {
+         method: 'PUT',
+         body: {
+                  "context_uri": "spotify:track:6g93YtKKHU2H1qIqhLIL0Y",
+                  "offset": {
+                     "position": 5
+                  },
+                  "position_ms": 0
+               },
+         headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+         },
       })
    }
    /////////////////////////////////////////////////////////////////////
